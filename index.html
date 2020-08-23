@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html><head>
+	<title>My hack</title>
+
+<script>
+
+
+function input(var1){
+	if(var1==="add"){
+		url= "<enter_your_url_here>"
+		txa= "SurvivorArea"
+	}
+	if(var1==="match"){
+		url= "<enter_your_url_here>"
+		txa= "PateintArea"
+	}
+    //console.log()
+    var xhr = new XMLHttpRequest();
+		//xhr.withCredentials = true;
+	xhr.addEventListener("readystatechange", function() {
+	  if(this.readyState === 4) {
+	    console.log(this.responseText);
+	    var o=JSON.parse(this.responseText);
+	    var totalRowCount = document.getElementById("output").rows.length;
+		for (i = 1; i <= totalRowCount; i++) {
+			i=1;
+				document.getElementById("output").deleteRow(i);
+				var totalRowCount = document.getElementById("output").rows.length;
+			}
+	    for (const [key, value] of Object.entries(o.body)) {
+				//console.log(key, value);
+				var k= parseInt(key)+1
+				var x = document.getElementById("output").insertRow(-1)
+				x.insertCell(0).appendChild(document.createTextNode(k.toString()+ '.'))
+				x.insertCell(-1).appendChild(document.createTextNode(value.replace(/(\r\n|\n|\t|\r)/gm,"")))
+			//return true
+		}
+	  }
+	});
+
+	xhr.open("POST", url);
+	xhr.setRequestHeader("content-type", "application/json");
+	var data = JSON.stringify({"data":{"method":var1,"story":document.getElementById(txa).value}});
+	xhr.send(data);
+
+}    
+
+
+</script>
+</head>
+
+<body>
+	<h1>Survivor</h1>
+<textarea style=" width: 518px;
+    height: 90px;" id="SurvivorArea">	
+</textarea>
+<div><button onclick="input('add')">Submit Story</button></div>
+
+
+<h1>Pateint</h1>
+<textarea style=" width: 518px;
+    height: 90px;" id="PateintArea">	
+</textarea>
+<div><button onclick="input('match')">Read Matching Stories</button></div>
+
+
+<h1>Stories</h1>
+
+<div style="
+    border-top-width: 10px;
+">
+	<table id="output">
+		<tbody><tr><td style="
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+">S No.</td><td style="padding-top: 5px;
+padding-right: 5px;
+padding-bottom: 5px;
+padding-left: 5px;">Story</td></tr>
+		<tr><td>1. </td><td>this is my story</td></tr>
+	</tbody></table>
+</div>
+
+
+</body></html>
