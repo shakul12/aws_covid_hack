@@ -1,0 +1,23 @@
+{
+  "name": "aws_covid_hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakul12/aws_covid_hack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shakul12/aws_covid_hack/issues"
+  },
+  "homepage": "https://github.com/shakul12/aws_covid_hack#readme"
+}
